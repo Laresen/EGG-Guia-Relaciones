@@ -1,0 +1,75 @@
+@startuml
+class Entidades.Juego {
+- ArrayList<Jugador> listaJugadores
+- Revolver revolver
++ <<Create>> Juego()
++ ArrayList<Jugador> getListaJugadores()
++ Revolver getRevolver()
+}
+class Servicios.ServiciosRevolver {
++ void llenarRevolver(Revolver)
++ boolean mojar(Revolver)
++ void siguienteChorro(Revolver)
++ String mostrarRevolver(Revolver)
+}
+class Constantes.Constantes {
++ {static} String NOMBRE
++ {static} String ID
++ {static} String ID_INVALIDO
++ {static} String ID_CORRECTO
++ {static} String JUGADOR_MOJADO
++ {static} String JUGADOR_SALVADO
++ {static} String SEGUIR_JUGANDO
++ {static} String RECARGAR
++ {static} String INICO_JUEGO
++ {static} String RESULTADOS
++ {static} String TURNO_JUGADOR
++ {static} String CANTIDAD_JUGADORES
++ {static} String ELEGIR_CANTIDAD
+}
+class Main.Main {
++ {static} void main(String[])
+}
+class Entidades.Jugador {
+- Integer ID
+- String nombre
+- boolean mojado
++ <<Create>> Jugador()
++ <<Create>> Jugador(Integer,String,boolean)
++ Integer getID()
++ void setID(Integer)
++ String getNombre()
++ void setNombre(String)
++ boolean isMojado()
++ void setMojado(boolean)
+}
+class Servicios.ServiciosJuego {
+- Scanner read
+- ServiciosJugador ServJ
+- ServiciosRevolver ServR
++ void llenarJuego(ArrayList<Jugador>,Revolver)
++ void cargarJugadores(ArrayList<Jugador>,String)
++ void mostrarResultados(ArrayList<Jugador>)
++ boolean todosMojados(ArrayList<Jugador>)
++ void siguienteRonda(Jugador,Revolver)
++ void juego()
+}
+class Servicios.ServiciosJugador {
+- ServiciosRevolver ServR
+- Scanner read
+- ArrayList<Integer> IDsDisponibles
++ Jugador crearJugador()
++ boolean disparo(Revolver,Jugador)
++ boolean idDisponible(int)
+}
+class Entidades.Revolver {
+- Integer posicionActual
+- Integer posicionAgua
++ <<Create>> Revolver()
++ <<Create>> Revolver(Integer,Integer)
++ Integer getPosicionActual()
++ void setPosicionActual(Integer)
++ Integer getPosicionAgua()
++ void setPosicionAgua(Integer)
+}
+@enduml

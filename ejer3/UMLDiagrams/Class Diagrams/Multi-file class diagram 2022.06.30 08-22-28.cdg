@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="Multi-file class diagram">
+  <ClassDiagramComponents>
+    <Class name="Constantes" package="Constantes" visibility="public" xPosition="0.0" yPosition="20.0">
+      <Fields>
+        <Field name="OPCIONES_DISPONIBLES" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="ELEGIR_OPCION" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="PEDIR_CANTIDAD" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="BARAJAR" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="BARAJA_VACIA" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="SIN_CARTAS_DISPONIBLES" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="SIN_CARTAS_MONTON" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="MOSTRAR_CARTAS" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="MOSTRAR_CARTA" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="MOSTRAR_CARTAS_BARAJA" type="String" visibility="public" isStatic="true" isFinal="true"/>
+        <Field name="MOSTRAR_CARTAS_MONTON" type="String" visibility="public" isStatic="true" isFinal="true"/>
+      </Fields>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="Carta" package="Entidades" visibility="public" xPosition="707.0" yPosition="582.0">
+      <Fields>
+        <Field name="tipo" type="String" visibility="private" isFinal="true"/>
+        <Field name="numero" type="Integer" visibility="private" isFinal="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="tipo"/>
+          <Argument type="Integer" name="numero"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getTipo" returnType="String" visibility="public"/>
+        <Method name="getNumero" returnType="Integer" visibility="public"/>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Maso" package="Entidades" visibility="public" xPosition="628.0" yPosition="77.0">
+      <Fields>
+        <Field name="cartasDisponibles" type="ArrayList&lt;Carta&gt;" visibility="private" isFinal="true"/>
+        <Field name="cartasUsadas" type="ArrayList&lt;Carta&gt;" visibility="private" isFinal="true"/>
+        <Field name="cartaActual" type="Carta" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="ArrayList&lt;Carta&gt;" name="cartasDisponibles"/>
+          <Argument type="ArrayList&lt;Carta&gt;" name="cartasUsadas"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getCartasDisponibles" returnType="ArrayList&lt;Carta&gt;" visibility="public"/>
+        <Method name="getCartasUsadas" returnType="ArrayList&lt;Carta&gt;" visibility="public"/>
+        <Method name="getCartaActual" returnType="Carta" visibility="public"/>
+        <Method name="setCartaActual" returnType="void" visibility="public">
+          <Argument type="Carta" name="cartaActual"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Juego" package="Servicios" visibility="public" xPosition="1432.0" yPosition="715.0">
+      <Fields>
+        <Field name="read" type="Scanner" visibility="private" isFinal="true"/>
+        <Field name="ServMaso" type="ServicioMaso" visibility="private" isFinal="true"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="menu" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="ServicioMaso" package="Servicios" visibility="public" xPosition="1329.0" yPosition="283.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="crearBaraja" returnType="Maso" visibility="public"/>
+        <Method name="barajar" returnType="boolean" visibility="public">
+          <Argument type="ArrayList&lt;Carta&gt;" name="cartasDisponibles"/>
+        </Method>
+        <Method name="siguenCarta" returnType="Carta" visibility="public">
+          <Argument type="Maso" name="barajaCartas"/>
+        </Method>
+        <Method name="cartasDisponibles" returnType="boolean" visibility="public">
+          <Argument type="ArrayList&lt;Carta&gt;" name="cartas"/>
+        </Method>
+        <Method name="darCartas" returnType="boolean" visibility="public">
+          <Argument type="Maso" name="barajaCartas"/>
+          <Argument type="Integer" name="cantidad"/>
+        </Method>
+        <Method name="siguienteCarta" returnType="Carta" visibility="public">
+          <Argument type="Maso" name="barajaCartas"/>
+        </Method>
+        <Method name="mostrarMonton" returnType="boolean" visibility="public">
+          <Argument type="ArrayList&lt;Carta&gt;" name="cartasUsadas"/>
+        </Method>
+        <Method name="mostrarBaraja" returnType="boolean" visibility="public">
+          <Argument type="ArrayList&lt;Carta&gt;" name="cartasDisponibles"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Main" package="Main" visibility="public" xPosition="1403.0" yPosition="38.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String[]" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <HasRelation name="cartasUsadas" source="Entidades.Maso" target="Entidades.Carta" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Carta&gt;"/>
+    <HasRelation name="cartaActual" source="Entidades.Maso" target="Entidades.Carta" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Entidades.Maso" target="Entidades.Carta" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="cartasDisponibles" source="Entidades.Maso" target="Entidades.Carta" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Carta&gt;"/>
+    <HasRelation name="ServMaso" source="Servicios.Juego" target="Servicios.ServicioMaso" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Servicios.ServicioMaso" target="Entidades.Carta" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Servicios.ServicioMaso" target="Entidades.Maso" sourceCardinality="1..1" targetCardinality="1..1"/>
+  </ClassDiagramRelations>
+</ClassDiagram>
